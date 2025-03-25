@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bbelial/router"
 	"log"
 	"net/http"
 
@@ -19,9 +20,7 @@ func main() {
 	e.Static("/", "public")
 
 	// Routings.
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Success!")
-	})
+	e.GET("/", router.Home)
 
 	// Run the server.
 	if err := s.ListenAndServe(); err != http.ErrServerClosed {
