@@ -15,6 +15,9 @@ func main() {
 		Handler: e,
 	}
 
+	// Serve static files.
+	e.Static("/", "assets")
+
 	// Routings.
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Success!")
