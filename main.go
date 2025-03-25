@@ -16,7 +16,7 @@ func main() {
 	}
 
 	// Serve static files.
-	e.Static("/", "assets")
+	e.Static("/", "public")
 
 	// Routings.
 	e.GET("/", func(c echo.Context) error {
