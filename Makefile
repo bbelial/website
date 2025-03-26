@@ -8,7 +8,7 @@ BUILDDIR =	build
 all: build
 
 templ:
-	go tool templ generate
+	templ generate
 
 run: templ
 	go run ${MAINFILE}
