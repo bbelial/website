@@ -21,6 +21,8 @@ func main() {
 
 	// Routings.
 	e.GET("/", router.Home)
+	e.GET("/article", router.Article)
+	e.GET("/project", router.Project)
 
 	// Run the server.
 	if err := s.ListenAndServe(); err != http.ErrServerClosed {

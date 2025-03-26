@@ -1,0 +1,35 @@
+package component
+
+type route struct {
+	Link	string
+	Name	string
+}
+
+var routes = []route {
+	route {
+		Link:	"/",
+		Name:	"Home",
+	},
+	route {
+		Link:	"/article",
+		Name:	"Article",
+	},
+	route {
+		Link:	"/project",
+		Name:	"Project",
+	},
+}
+
+templ Nav(name string) {
+	<nav>
+		<ul>
+			for _, route := range routes {
+				if route.Name == name {
+					<li><a href={ templ.URL(route.Link) } aria-current="page">{ route.Name }</a></li>
+				} else {
+					<li><a href={ templ.URL(route.Link) }>{ route.Name }</a></li>
+				}
+			}
+		</ul>
+	</nav>
+}
