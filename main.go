@@ -1,7 +1,8 @@
 package main
 
 import (
-	"bbelial/router"
+	content "bbelial/router/content"
+	router "bbelial/router/static"
 	"log"
 	"net/http"
 
@@ -19,9 +20,15 @@ func main() {
 	// Serve static files.
 	e.Static("/", "public")
 
+	// Initialise posts file reader.
+	postReader := content.PostReader{
+		Path: "private/post",
+	}
+
 	// Routings.
 	e.GET("/", router.Home)
-	e.GET("/article", router.Article)
+	e.GET("/article", router.Article(postReader))
+	e.GET("/article/:slug", content.Article(postReader))
 	e.GET("/project", router.Project)
 
 	// Run the server.

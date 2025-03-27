@@ -1,11 +1,27 @@
 package static
 
-import "bbelial/template/component"
+import (
+	"bbelial/model"
+	"bbelial/template/component"
 
-templ Article() {
+	"path/filepath"
+)
+
+templ Article(postsData []model.PostData) {
 	@component.Base("Article") {
 		<main id="article">
 			<h1>Article Page!</h1>
+			for _, post := range postsData {
+				<article>
+            	    <header>
+            	        <hgroup>
+            	            <h3><a href={ templ.SafeURL(filepath.Join("/article", post.Slug)) }>{ post.Title }</a></h3>
+            	            <p>{ post.Author.Name }</p>
+            	        </hgroup>
+            	    </header>
+            	    <p class="description">{ post.Description }</p>
+            	</article>
+			}
 		</main>
 	}
 }

@@ -1,0 +1,10 @@
+package content
+
+import "bbelial/model"
+
+templ Post(post model.Post) {
+	<title>{ post.Title }</title>
+	<article>
+		@post.Content
+	</article>
+}
