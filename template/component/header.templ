@@ -1,0 +1,52 @@
+package component
+
+import "bbelial/template/util"
+
+type route struct {
+	Link	string
+	Name	string
+}
+
+var routes = []route {
+	route {
+		Link:	"/",
+		Name:	"Home",
+	},
+	route {
+		Link:	"/article",
+		Name:	"Article",
+	},
+	route {
+		Link:	"/project",
+		Name:	"Project",
+	},
+}
+
+templ Header(name string) {
+	<header>
+		<a href="/">
+			@util.LogoHeader()
+		</a>
+		<nav>
+			<ul>
+				for _, route := range routes {
+					if route.Name == name {
+						<li>
+							<a href={ templ.URL(route.Link) } aria-current="page">
+								@util.NavIcons(name)
+								<span>{ route.Name }</span>
+							</a>
+						</li>
+					} else {
+						<li>
+							<a href={ templ.URL(route.Link) }>
+								@util.NavIcons(route.Name)
+								<span>{ route.Name }</span>
+							</a>
+						</li>
+					}
+				}
+			</ul>
+		</nav>
+	</header>
+}

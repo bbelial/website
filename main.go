@@ -22,11 +22,11 @@ func main() {
 
 	// Initialise posts file reader.
 	postReader := content.PostReader{
-		Path: "private/post",
+		Path: "private/article",
 	}
 
 	// Routings.
-	e.GET("/", router.Home)
+	e.GET("/", router.Home(postReader))
 	e.GET("/article", router.Article(postReader))
 	e.GET("/article/:slug", content.Article(postReader))
 	e.GET("/project", router.Project)

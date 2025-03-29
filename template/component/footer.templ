@@ -1,0 +1,21 @@
+package component
+
+import "bbelial/template/util"
+
+
+templ Footer() {
+	{{ socials := [...]string{"github", "mastodon", "email"} }}
+	<footer>
+		@util.Logo()
+		<p>Made by [BUILDER]</p>
+		<ul>
+			for _, name := range socials {
+				<li>
+					<a href="#">
+						@util.FooterSocials(name)
+					</a>
+				</li>
+			}
+		</ul>
+	</footer>
+}

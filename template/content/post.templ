@@ -1,10 +1,15 @@
 package content
 
-import "bbelial/model"
+import (
+	"bbelial/model"
+	"bbelial/template/component"
+)
 
 templ Post(post model.Post) {
-	<title>{ post.Title }</title>
-	<article>
-		@post.Content
-	</article>
+	@component.Base(post.Title) {
+		<title>{ post.Title }</title>
+		<article>
+			@post.Content
+		</article>
+	}
 }

@@ -1,6 +1,7 @@
 package router
 
 import (
+	content "bbelial/router/content"
 	"bbelial/template"
 	"bbelial/template/static"
 	"net/http"
@@ -8,6 +9,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func Home(ctx echo.Context) error {
-	return template.Render(ctx, http.StatusOK, static.Home())
+func Home(pr content.PostReader) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		posts, err := pr.Query()
+		if err != nil {
+			return c.HTML(http.StatusInternalServerError, "Errors querying metadata.")
+		}
+
+		return template.Render(c, http.StatusOK, static.Home(posts))
+	}
 }

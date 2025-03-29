@@ -1,11 +1,24 @@
 package static
 
-import "bbelial/template/component"
+import (
+	"bbelial/model"
+	"bbelial/template/component"
+	"bbelial/template/util"
+)
 
-templ Home() {
+templ Home(postData []model.PostData) {
 	@component.Base("Home") {
 		<main id="home">
-			<h1>Home Page!</h1>
+			<section>
+				<h1>Belial</h1>
+				@util.Logo()
+			</section>
+
+			<section id="article">
+				for _, post := range postData {
+					@PostQuery(post)
+				}
+			</section>
 		</main>
 	}
 }
