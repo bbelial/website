@@ -24,7 +24,7 @@ var routes = []route {
 
 templ Header(name string) {
 	<header>
-		<a href="/">
+		<a href="/" class="logo_header">
 			@util.LogoHeader()
 		</a>
 		<nav>
@@ -48,5 +48,12 @@ templ Header(name string) {
 				}
 			</ul>
 		</nav>
+		<ul>
+			<li>
+				<button class="theme__switcher">
+					@util.NavIcons("")
+				</button>
+			</li>
+		</ul>
 	</header>
 }
